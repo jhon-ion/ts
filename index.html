@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard Tim — Ion Network</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    :root{
+      --bg: #f6f8ff;
+      --card: #ffffff;
+      --primary-1: #4e54c8;
+      --primary-2: #8f94fb;
+      --muted: #6b7280;
+      --radius: 14px;
+      --shadow: 0 8px 22px rgba(18, 22, 40, 0.06);
+      --gap: 14px;
+      --maxw: 520px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:#111827;
+      display:flex;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .app { width:100%; max-width:var(--maxw); }
+
+    /* Header */
+    .header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--primary-1),var(--primary-2));
+      color:white;
+      box-shadow: var(--shadow);
+      margin-bottom:var(--gap);
+    }
+    .brand { display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit; }
+    .brand .logo {
+      width:44px; height:44px; border-radius:10px; overflow:hidden;
+      background:white; display:flex; align-items:center; justify-content:center;
+    }
+    .brand .logo img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1;}
+    .brand .title { font-weight:600; font-size:16px; }
+
+    .header .actions { display:flex; gap:12px; align-items:center; }
+    .icon-btn {
+      width:40px;height:40px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.06); color:#fff; text-decoration:none; border:none; cursor:pointer;
+    }
+
+    /* Greeting */
+    .greeting {
+      margin-bottom:var(--gap);
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.6));
+      border-radius:12px;
+      padding:12px 16px;
+      display:flex; align-items:center; gap:12px;
+      box-shadow: 0 4px 10px rgba(16,24,40,0.03);
+    }
+    .greeting .text { font-weight:600; font-size:15px; }
+    .greeting .sub { color:var(--muted); font-size:13px; }
+
+    /* Calendar card */
+    .calendar {
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:var(--gap);
+    }
+    .cal-left { flex:0 0 96px; text-align:center; }
+    .cal-left .daynum {
+      font-size:44px; font-weight:700; color:var(--primary-1);
+      line-height:1;
+    }
+    .cal-left .weekday {
+      margin-top:4px; font-size:14px; font-weight:700; color:#111827;
+      text-transform:uppercase;
+    }
+    .cal-right{ flex:1; display:flex; flex-direction:column; gap:8px; }
+    .cal-right .month{ color:var(--muted); font-size:13px; }
+    .cal-right .week-label{ font-size:13px; font-weight:700; color:#111827; }
+    .week-status{ display:flex; gap:8px; align-items:center; margin-top:6px; flex-wrap:wrap; }
+    .ws-item {
+      width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:13px;
+      background:#e6e7ee; color:#111827;
+      box-shadow: 0 2px 6px rgba(16,24,40,0.06);
+    }
+    .ws-item.done { background: linear-gradient(90deg,var(--primary-1),var(--primary-2)); color:white; }
+    .ws-item.active { background: white; color:var(--primary-1); border:2px solid var(--primary-1); box-shadow:none; }
+
+    /* Menu grid */
+    .menu {
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+      margin-bottom:20px;
+    }
+    @media(min-width:760px){ .menu{ grid-template-columns: repeat(3, 1fr); } }
+
+    .menu a {
+      display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;
+      text-decoration:none; background:var(--card); padding:14px; border-radius:12px;
+      color:#111827; box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+      min-height:96px; transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .menu .icon{
+      width:44px;height:44px; display:flex; align-items:center; justify-content:center;
+      border-radius:10px; background:#f9faff; overflow:hidden;
+    }
+    .menu img{ width:100%; height:100%; object-fit:contain; aspect-ratio:1/1; }
+    .menu .label{ font-weight:600; font-size:13px; color:#111827; text-align:center; }
+
+    .muted { font-size:13px; color:var(--muted); text-align:center; margin-top:6px;}
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQECJLG8uP5WpjGIAPURYLH_pz1JrK4Q8ogw1pXEjigXvbq7IAio6kWZlBe&s=10" alt="Ion Network">
+        </div>
+        <div class="title">Ion Network</div>
+      </div>
+      <div class="actions">
+        <a href="#" class="icon-btn" aria-label="Pesan">
+          ✈️
+        </a>
+        <a href="#" class="icon-btn" aria-label="Notifikasi">
+          🔔
+        </a>
+        <a href="#" class="icon-btn" aria-label="Profil">
+          👤
+        </a>
+      </div>
+    </header>
+
+    <!-- Greeting -->
+    <div class="greeting">
+      <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(90deg,var(--primary-1),var(--primary-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Hi</div>
+      <div>
+        <div class="text" id="greetLine">Hallo tim, selamat pagi</div>
+        <div class="sub" id="greetSub">Semoga harimu menyenangkan</div>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <section class="calendar">
+      <div class="cal-left">
+        <div class="daynum" id="dayNumber">27</div>
+        <div class="weekday" id="dayName">SENIN</div>
+      </div>
+      <div class="cal-right">
+        <div class="month" id="monthYear">Agustus 2025</div>
+        <div class="week-label">Minggu ini</div>
+        <div class="week-status" id="weekStatus"></div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <nav class="menu">
+        <!-- WhatsApp -->
+      <a href="wa.html"><div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WA"></div><div class="label">WhatsApp</div></a>
+      
+      <!-- absen -->
+      
+      <a href="/absen/index.html"><div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Absen"></div><div class="label">Absen</div></a>
+      
+      <!-- laporan --> 
+      
+      <a href="/laporan/index.html"><div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Laporan"></div><div class="label">Laporan</div></a>
+      
+      <!-- input -->
+      
+      <a href="#"><div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Input"></div><div class="label">Input</div></a>
+      
+      <!-- kmz -->
+      
+      <a href="maps.html"><div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="Map"></div><div class="label">KMZ Map</div></a>
+      
+      <!-- new -->
+      
+      <a href="#"><div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="New"></div><div class="label">New</div></a>
+    </nav>
+
+    <div class="muted">© 2025 Jhon</div>
+
+  </div>
+
+  <script>
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-1') || '#4e54c8';
+
+    function setGreeting() {
+      const now = new Date();
+      const hour = now.getHours();
+      let part = 'pagi';
+      if (hour >= 12 && hour < 18) part = 'siang';
+      else if (hour >= 18) part = 'malam';
+      document.getElementById('greetLine').textContent = `Hallo tim, selamat ${part}`;
+      document.getElementById('greetSub').textContent = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    }
+
+    function setCalendarAndWeek() {
+      const now = new Date();
+      document.getElementById('dayNumber').textContent = now.getDate();
+      document.getElementById('dayName').textContent = now.toLocaleDateString('id-ID',{weekday:'long'}).toUpperCase();
+      document.getElementById('monthYear').textContent = now.toLocaleDateString('id-ID',{month:'long',year:'numeric'});
+      
+      const container = document.getElementById('weekStatus');
+      container.innerHTML = '';
+      const days = ['S','S','S','R','K','J','S']; // Senin–Minggu (pakai huruf singkat)
+      const today = now.getDay(); // 0=Min ... 6=Sabtu
+      // ubah: JS getDay 0=Min -> index 6
+      const mapIdx = [6,0,1,2,3,4,5];
+      days.forEach((lab, idx)=>{
+        const span=document.createElement('div');
+        span.className='ws-item';
+        span.textContent=lab;
+        if(idx<mapIdx[today]) span.classList.add('done');
+        if(idx===mapIdx[today]) span.classList.add('active');
+        container.appendChild(span);
+      });
+    }
+
+    setGreeting();
+    setCalendarAndWeek();
+    setInterval(setGreeting,60000);
+    setInterval(setCalendarAndWeek,60000);
+
+    // intercept link #
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href="#"]');
+      if(!a) return;
+      e.preventDefault();
+      Swal.fire({
+        icon:'warning',
+        title:'⚠️ Maaf',
+        html:'<strong>Fitur ini masih dalam pengerjaan</strong>',
+        confirmButtonText:'Mengerti',
+        confirmButtonColor:primaryColor
+      });
+    });
+  </script>
+</body>
+                                                                                                                                                                                </html>
 
