@@ -1,1 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Pesan WhatsApp Ion Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f8ff;
+      --card: #ffffff;
+      --primary-1: #4e54c8;
+      --primary-2: #8f94fb;
+      --muted: #6b7280;
+      --radius: 14px;
+      --shadow: 0 6px 16px rgba(18,22,40,0.08);
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #111827;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px 20px 28px;
+      box-shadow: var(--shadow);
+    }
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 18px;
+      background: linear-gradient(90deg, var(--primary-1), var(--primary-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #374151;
+    }
+    input, select {
+      width: 100%;
+      padding: 11px 12px;
+      margin-top: 6px;
+      border-radius: var(--radius);
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-size: 14px;
+      color: #111827;
+      transition: all 0.2s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-1);
+      box-shadow: 0 0 0 3px rgba(78,84,200,0.15);
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: linear-gradient(90deg,var(--primary-1),var(--primary-2));
+      color: white;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(78,84,200,0.2); }
+    .hidden { display: none; }
+    .visible { display: block; }
+    #ambilKontak {
+      margin-top: 10px;
+      font-size: 13px;
+      background: #f3f4f6;
+      color: #111827;
+      border: 1px solid #d1d5db;
+    }
+    #ambilKontak:hover { background: #e5e7eb; }
+    .copyright {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Kirim Pesan WhatsApp</h2>
+    <form id="waForm">
+      <label>Target Nomor (WA):</label>
+      <input type="tel" id="target" placeholder="628xxxxxxx" inputmode="numeric" required>
+
+      <label>Pilih Template Pesan:</label>
+      <select id="template" required>
+        <option value="">-- Pilih Template --</option>
+        <option value="panduan">Panduan Pembayaran / Akun</option>
+        <option value="pemasangan">Konfirmasi Pemasangan</option>
+        <option value="maintenance">Konfirmasi Maintenance</option>
+        <option value="terminate">Terminate / Pengambilan Perangkat</option>
+      </select>
+
+      <div id="extraFields" class="hidden">
+        <label>Nama:</label>
+        <input type="text" id="nama" placeholder="Nama pelanggan">
+
+        <label>ID Pelanggan:</label>
+        <input type="tel" id="idPelanggan" placeholder="Contoh: 1234567890">
+
+        <label>Sandi Aplikasi:</label>
+        <input type="text" id="sandi" placeholder="Contoh: 654321">
+
+        <label>Penanggung Jawab:</label>
+        <select id="penanggungJawabSelect">
+          <option value="JAKA NUGRAHA - 085321525261">JAKA NUGRAHA - 085321525261</option>
+          <option value="Achmed - 082130339580">Achmed - 082130339580</option>
+          <option value="Alex - 082315919466">Alex - 082315919466</option>
+          <option value="lainnya">Lainnya</option>
+        </select>
+
+        <input type="text" id="penanggungJawabManual" placeholder="Ketik Nama - No HP" class="hidden">
+        <button type="button" id="ambilKontak" class="hidden">📇 Ambil dari Kontak</button>
+      </div>
+
+      <button type="submit">Kirim Pesan</button>
+    </form>
+    <div class="copyright">© Jhon 2025</div>
+  </div>
+
+<script>
+const form = document.getElementById("waForm");
+const templateSelect = document.getElementById("template");
+const extraFields = document.getElementById("extraFields");
+const penanggungSelect = document.getElementById("penanggungJawabSelect");
+const penanggungManual = document.getElementById("penanggungJawabManual");
+const btnKontak = document.getElementById("ambilKontak");
+
+templateSelect.addEventListener("change",()=>{
+  if(templateSelect.value==="panduan"){
+    extraFields.classList.remove("hidden");
+    extraFields.classList.add("visible");
+  } else {
+    extraFields.classList.add("hidden");
+    extraFields.classList.remove("visible");
+  }
+  penanggungManual.classList.add("hidden");
+  btnKontak.classList.add("hidden");
+  penanggungSelect.value=penanggungSelect.options[0].value;
+});
+
+penanggungSelect.addEventListener("change",()=>{
+  if(penanggungSelect.value==="lainnya"){
+    penanggungManual.classList.remove("hidden");
+    btnKontak.classList.remove("hidden");
+  } else {
+    penanggungManual.classList.add("hidden");
+    btnKontak.classList.add("hidden");
+  }
+});
+
+// Tombol ambil kontak (experimental Web API)
+btnKontak.addEventListener("click", async ()=>{
+  if(!("contacts" in navigator && "select" in navigator.contacts)){
+    alert("Fitur ambil kontak belum didukung di browser ini.");
+    return;
+  }
+  try {
+    const kontak=await navigator.contacts.select(["name","tel"],{multiple:false});
+    if(kontak.length>0){
+      const nama=kontak[0].name?kontak[0].name[0]:"";
+      const nohp=kontak[0].tel?kontak[0].tel[0]:"";
+      penanggungManual.value=`${nama} - ${nohp}`;
+    }
+  } catch(err){ console.error("Gagal ambil kontak:",err); }
+});
+
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  let target=document.getElementById("target").value.trim();
+  let template=templateSelect.value;
+  let message="";
+  if(target.startsWith("08")) target="62"+target.substring(1);
+  if(!target.startsWith("62")){ alert("Nomor harus diawali 62"); return; }
+  if(target.length<10){ alert("Nomor terlalu pendek!"); return; }
+
+  if(template==="panduan"){
+    const nama=document.getElementById("nama").value||"[NAMA]";
+    const id=document.getElementById("idPelanggan").value||"[ID PELANGGAN]";
+    const sandi=document.getElementById("sandi").value||"[SANDI]";
+    let pj=penanggungSelect.value;
+    if(pj==="lainnya") pj=penanggungManual.value||"[PENANGGUNG JAWAB]";
+    message=`Panduan Lengkap Ion Network
+
+Nama: ${nama}
+ID Pelanggan: ${id}
+Sandi Aplikasi: ${sandi}
+Link APK: https://play.google.com/store/apps/details?id=com.ionboardband.memberionapps
+
+Penanggung jawab: ${pj}`;
+  } else if(template==="pemasangan"){
+    message="Assalamualaikum, saya teknisi dari *ION NETWORK*. Konfirmasi jadwal pemasangan WiFi. Terima kasih.";
+  } else if(template==="maintenance"){
+    message="Assalamualaikum, saya teknisi dari *ION NETWORK*. Konfirmasi jadwal perbaikan WiFi. Terima kasih.";
+  } else if(template==="terminate"){
+    message="Assalamualaikum, saya teknisi dari *ION NETWORK*. Pengambilan perangkat berhenti berlangganan. Terima kasih.";
+  }
+
+  const url=`https://wa.me/${target}?text=${encodeURIComponent(message)}`;
+  window.open(url,"_blank");
+});
+</script>
+
+</body>
+</html>
 
