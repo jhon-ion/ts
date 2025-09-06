@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Absensi & Laporan Teknisi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Absen Ion Subang</h1>
 
+    <label>Tanggal</label>
+    <input type="date" id="tanggal">
+
+    <div class="relative">
+      <label>Maintenance & Instalasi (pisahkan dengan koma)</label>
+      <textarea id="mainst"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>ODP</label>
+      <textarea id="odp"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>Tarikan (contoh: 1,34km | Ridwan, Naufal. 2,5km | Ramdan, Ricky)</label>
+      <textarea id="tarik"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>Kerjaan lainnya (contoh: (Troubleshoot) Taupik, Sahid. (Survey) Ridho, Gito)</label>
+      <textarea id="lainnya"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>Izin</label>
+      <textarea id="izin"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>Sakit</label>
+      <textarea id="sakit"></textarea>
+    </div>
+
+    <div class="relative">
+      <label>Alfa</label>
+      <textarea id="alfa"></textarea>
+    </div>
+
+    <button onclick="generate()">Preview Laporan</button>
+
+    <div class="preview" id="preview"></div>
+
+    <div class="actions" id="actions" style="display:none;">
+      <button onclick="copyText()">Salin</button>
+      <button onclick="sendWA()">Kirim WhatsApp</button>
+      <button onclick="clearPreview()">Hapus</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
