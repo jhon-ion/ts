@@ -34,7 +34,7 @@ h1 {
 
 label {
   font-weight: 600;
-  color: #555;
+  color: #444;
   margin-bottom: 5px;
   display: block;
 }
@@ -47,8 +47,13 @@ input, textarea, select {
   background: #fafafa;
   color: #333;
   font-size: 1em;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   box-sizing: border-box;
+  resize: vertical;
+}
+
+input:hover, textarea:hover, select:hover {
+  border-color: #bbb;
 }
 
 input:focus, textarea:focus, select:focus {
@@ -68,7 +73,7 @@ button {
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0,123,255,0.3);
 }
 
@@ -83,12 +88,27 @@ button:hover {
   border-radius: 15px;
   border: 1px solid #eee;
   font-size: 0.95em;
-  color: #444;
+  color: #555;
+  white-space: pre-line; /* biar format text laporan tetap rapi */
 }
 
-/* tombol vertikal pakai class .actions */
 .actions {
   display: flex;
   flex-direction: column; /* tombol berjejer ke bawah */
   gap: 10px; /* jarak antar tombol */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  h1 {
+    font-size: 1.6em;
+  }
+  input, textarea, button {
+    font-size: 0.95em;
+    padding: 12px;
+  }
 }
