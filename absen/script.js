@@ -33,7 +33,7 @@ function generate(){
 }
 
 // ====== Simpan ke Google Sheet ======
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmQCLU2mTC45jVEOfyO1XUhUxnanQwQzhtQWkXp-1cRNVByv0i809jwClp8geBbBgj/exec"; // ganti dengan URL Web App kamu
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzROv_bseciRVuQMxgEGGkmqZg6TYeNxczhmCov4p7RgpLf03YNhh90CMKdlhRO3K7Z/exec"; // ganti dengan URL Web App kamu
 
 function saveToSheet(){
   const tanggal = document.getElementById("tanggal").value;
