@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #f0f4f8; /* lebih soft & clean */
+  background: #f2f6fa;
   color: #333;
   display: flex;
   justify-content: center;
@@ -14,32 +14,32 @@ body {
 
 .container {
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
   background: #fff;
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 h1 {
   text-align: center;
   font-family: 'Orbitron', sans-serif;
-  color: #007bff; /* biru segar Ion */
+  color: #007bff;
   font-size: 2em;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 label {
   font-weight: 600;
-  color: #444;
+  color: #555;
   margin-bottom: 5px;
   display: block;
 }
 
-input, textarea, select {
+input, textarea {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
@@ -52,34 +52,30 @@ input, textarea, select {
   resize: vertical;
 }
 
-input:hover, textarea:hover, select:hover {
+input:hover, textarea:hover {
   border-color: #bbb;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus, textarea:focus {
   border-color: #007bff;
   background: #fff;
   outline: none;
-  box-shadow: 0 0 6px rgba(0,123,255,0.2);
+  box-shadow: 0 0 8px rgba(0,123,255,0.2);
 }
 
 button {
-  width: 100%;
   padding: 14px;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(135deg,#007bff,#00c6ff);
-  color: #fff;
   font-weight: 600;
-  font-size: 1em;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+  transition: 0.3s;
+  font-size: 1em;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,123,255,0.35);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
 .preview {
@@ -89,26 +85,33 @@ button:hover {
   border: 1px solid #eee;
   font-size: 0.95em;
   color: #555;
-  white-space: pre-line; /* biar format text laporan tetap rapi */
+  white-space: pre-line;
 }
 
 .actions {
   display: flex;
-  flex-direction: column; /* tombol berjejer ke bawah */
-  gap: 10px; /* jarak antar tombol */
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
 }
 
-/* Responsif untuk layar kecil */
+.actions button {
+  flex: 1 1 calc(50% - 10px);
+  color: #fff;
+  text-align: center;
+}
+
+/* Warna tombol */
+.actions button:nth-child(1) { background: #007bff; }
+.actions button:nth-child(2) { background: #00c6ff; }
+.actions button:nth-child(3) { background: #dc3545; }
+.actions button#waBtn { background: #25D366; }
+
+/* Responsive */
 @media (max-width: 600px) {
-  .container {
-    padding: 20px;
-    border-radius: 15px;
+  .actions button {
+    flex: 1 1 100%;
   }
-  h1 {
-    font-size: 1.6em;
-  }
-  input, textarea, button {
-    font-size: 0.95em;
-    padding: 12px;
-  }
+  h1 { font-size: 1.6em; }
+  input, textarea, button { font-size: 0.95em; padding: 12px; }
 }
