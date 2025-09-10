@@ -4,34 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Absensi & Laporan Teknisi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>📋 Absen & Laporan Teknisi</h1>
 
-    <!-- Input tanggal -->
     <label for="tanggal">Tanggal</label>
     <input type="date" id="tanggal">
 
-    <!-- Maintenance & Instalasi -->
     <label for="mainst">Maintenance & Instalasi <small>(pisahkan dengan koma)</small></label>
     <textarea id="mainst" placeholder="Contoh: Ramdan, Ridwan, Naufal"></textarea>
 
-    <!-- ODP -->
     <label for="odp">ODP</label>
     <textarea id="odp" placeholder="Contoh: ODP-23, ODP-41"></textarea>
 
-    <!-- Tarikan -->
     <label for="tarik">Tarikan</label>
     <textarea id="tarik" placeholder="Contoh: 1,34km | Ridwan, Naufal. 2,5km | Ramdan, Ricky"></textarea>
 
-    <!-- Lainnya -->
     <label for="lainnya">Kerjaan lainnya</label>
     <textarea id="lainnya" placeholder="Contoh: (Troubleshoot) Taupik, Sahid. (Survey) Ridho, Gito"></textarea>
 
-    <!-- Absensi -->
     <label for="izin">Izin</label>
     <input type="text" id="izin" placeholder="Contoh: Deni">
 
@@ -41,20 +35,19 @@
     <label for="alfa">Alfa</label>
     <input type="text" id="alfa" placeholder="Contoh: -">
 
-    <!-- Tombol Generate -->
     <button onclick="generate()">Preview Laporan</button>
 
-    <!-- Preview laporan -->
     <div class="preview" id="preview"></div>
 
-    <!-- Aksi setelah laporan jadi -->
     <div class="actions" id="actions" style="display:none;">
       <button onclick="copyText()">📑 Salin</button>
-      <button onclick="saveToSheet()">💾 Simpan ke Sheet</button>
+      <button onclick="saveToSheet()">💾 Simpan</button>
       <button onclick="clearPreview()">🗑️ Hapus</button>
+      <button id="waBtn" onclick="sendWhatsApp()">📲 Kirim ke WhatsApp</button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
+  
