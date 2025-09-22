@@ -1,117 +1,261 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap');
 
+/* Aturan dasar untuk seluruh halaman */
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f2f6fa;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 30px;
-  min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: #eef2f6; /* Latar belakang lebih terang */
+    color: #34495e; /* Warna teks gelap yang lembut */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Posisi konten di atas */
+    padding: 24px;
+    min-height: 100vh;
+    box-sizing: border-box; /* Agar padding tidak merusak tata letak */
 }
 
+/* Kontainer utama aplikasi */
 .container {
-  width: 100%;
-  max-width: 720px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+    width: 100%;
+    max-width: 700px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Bayangan yang lebih jelas */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar elemen lebih besar */
 }
 
 h1 {
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  color: #007bff;
-  font-size: 2em;
-  margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #2c3e50; /* Warna judul yang lebih gelap */
+    font-size: 1.8em;
+    margin-bottom: 8px;
 }
 
+h2 {
+    color: #34495e;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+}
+
+h3 {
+    color: #c0392b; /* Warna untuk peringatan */
+}
+
+/* Kartu atau panel */
+.card {
+    background: #f8f9fa; /* Latar belakang kartu lebih terang */
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Efek bayangan dalam */
+}
+
+/* Label form */
 label {
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 5px;
-  display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    display: block;
+    font-size: 0.9em;
 }
 
+/* Input dan textarea */
 input, textarea {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: #fafafa;
-  color: #333;
-  font-size: 1em;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-  resize: vertical;
-}
-
-input:hover, textarea:hover {
-  border-color: #bbb;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #dcdfe4;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 input:focus, textarea:focus {
-  border-color: #007bff;
-  background: #fff;
-  outline: none;
-  box-shadow: 0 0 8px rgba(0,123,255,0.2);
+    outline: none;
+    border-color: #3498db; /* Warna border saat fokus */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
 }
 
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Tombol */
 button {
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 1em;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+    opacity: 0.9;
 }
 
+button:active {
+    transform: translateY(0);
+}
+
+.row {
+    display: flex;
+    gap: 10px; /* Jarak antar elemen lebih besar */
+    flex-wrap: wrap; /* Agar bisa responsif */
+}
+
+.row input {
+    flex: 1;
+}
+
+.row button {
+    background: #3498db; /* Warna tombol utama */
+    color: #fff;
+}
+
+/* Area pratinjau */
 .preview {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 15px;
-  border: 1px solid #eee;
-  font-size: 0.95em;
-  color: #555;
-  white-space: pre-line;
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #dce1e5;
+    min-height: 80px;
+    white-space: pre-line;
+    font-family: monospace; /* Menggunakan font monospace untuk kode/laporan */
+    line-height: 1.5;
+    font-size: 0.9em;
 }
 
+/* Daftar anggota */
+.anggota-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.anggota-item {
+    background: #e1f5fe;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #b3e5fc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+}
+
+.anggota-name {
+    font-weight: 600;
+    flex: 1;
+}
+
+.anggota-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.anggota-actions button {
+    background: none;
+    border: 1px solid #ccc;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    color: #555;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.anggota-actions button:hover {
+    background-color: #eee;
+}
+
+.anggota-actions .edit-btn {
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.anggota-actions .delete-btn {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+/* Tombol aksi (Salin, Kirim, Hapus) */
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-between;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .actions button {
-  flex: 1 1 calc(50% - 10px);
-  color: #fff;
-  text-align: center;
+    flex: 1;
+    background: #2ecc71;
+    color: #fff;
 }
 
-/* Warna tombol */
-.actions button:nth-child(1) { background: #007bff; }
-.actions button:nth-child(2) { background: #00c6ff; }
-.actions button:nth-child(3) { background: #dc3545; }
-.actions button#waBtn { background: #25D366; }
+.actions button:nth-child(2) {
+    background: #25d366;
+}
 
-/* Responsive */
-@media (max-width: 600px) {
-  .actions button {
-    flex: 1 1 100%;
-  }
-  h1 { font-size: 1.6em; }
-  input, textarea, button { font-size: 0.95em; padding: 12px; }
+.actions button:last-child {
+    background: #e74c3c;
+}
+
+/* Kartu info/peringatan */
+.info {
+    background: #fdeded;
+    border-color: #f1c9c9;
+}
+
+.info h3 {
+    color: #c0392b;
+}
+
+/* Styling untuk halaman-halaman yang berbeda */
+.page-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.menu-options button {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.1em;
+    padding: 15px;
+}
+
+.back-button {
+    background-color: #7f8c8d;
+    color: #fff;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .row {
+        flex-direction: column;
+    }
+    button, input, textarea {
+        font-size: 1em;
+    }
 }
