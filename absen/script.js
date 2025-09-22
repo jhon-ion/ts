@@ -1,6 +1,6 @@
 // ====== URL Google Apps Script Web App Anda ======
 // PASTIkan Anda mengganti URL ini dengan URL Web App Anda yang sudah di-deploy.
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTzp4s_reNEp2tdJPqNRPG3bQ18ftQTXd7paTrxn514-hTUj74RFwstQY9mvQcLYg-/exec"; 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7NZwOe733v2slFjEapQyUTs1K22BRmAv0ENMB9zGjiRSFiS839Xar-TOabnGCyR8X/exec"; 
 
 // ====== Manajemen Tampilan Halaman ======
 const pages = {
