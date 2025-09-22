@@ -1,53 +1,84 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Absensi & Laporan Teknisi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Absensi Tim</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📋 Absen & Laporan Teknisi</h1>
+    <div class="container">
+        <h1>Absensi Tim</h1>
 
-    <label for="tanggal">Tanggal</label>
-    <input type="date" id="tanggal">
+        <div id="startPage" class="page-section">
+            <p>Pilih mode yang ingin kamu gunakan.</p>
+            <div class="menu-options">
+                <button onclick="showPage('absensi')">📝 Lanjut Absen</button>
+                <button onclick="showPage('management')">👥 Manajemen Anggota</button>
+            </div>
+        </div>
 
-    <label for="mainst">Maintenance & Instalasi <small>(pisahkan dengan koma)</small></label>
-    <textarea id="mainst" placeholder="Contoh: Ramdan, Ridwan, Naufal"></textarea>
+        <div id="managementPage" class="page-section" style="display:none;">
+            <button class="back-button" onclick="showPage('start')">⬅️ Kembali</button>
+            <div class="card">
+                <h2>👥 Manajemen Anggota</h2>
+                <div class="row">
+                    <input id="anggotaInput" placeholder="Masukkan nama anggota, tekan Tambah" />
+                    <button id="addAnggotaBtn">➕ Tambah</button>
+                </div>
+                <div id="anggotaList" class="anggota-list">Loading anggota...</div>
+            </div>
+        </div>
 
-    <label for="odp">ODP</label>
-    <textarea id="odp" placeholder="Contoh: ODP-23, ODP-41"></textarea>
+        <div id="absensiPage" class="page-section" style="display:none;">
+            <button class="back-button" onclick="showPage('start')">⬅️ Kembali</button>
+            
+            <label for="tanggal">Tanggal</label>
+            <input type="date" id="tanggal">
 
-    <label for="tarik">Tarikan</label>
-    <textarea id="tarik" placeholder="Contoh: 1,34km | Ridwan, Naufal. 2,5km | Ramdan, Ricky"></textarea>
+            <label for="mainst">Maintenance & Instalasi <small>(pisahkan dengan koma)</small></label>
+            <textarea id="mainst" placeholder="Contoh: Ramdan, Ridwan, Naufal"></textarea>
 
-    <label for="lainnya">Kerjaan lainnya</label>
-    <textarea id="lainnya" placeholder="Contoh: (Troubleshoot) Taupik, Sahid. (Survey) Ridho, Gito"></textarea>
+            <label for="odp">ODP</label>
+            <textarea id="odp" placeholder="Contoh: ODP-23, ODP-41. Ridwan, Naufal"></textarea>
 
-    <label for="izin">Izin</label>
-    <input type="text" id="izin" placeholder="Contoh: Deni">
+            <label for="tarik">Tarikan</label>
+            <textarea id="tarik" placeholder="Contoh: 1,34km | Ridwan, Naufal. 2,5km | Ramdan, Ricky"></textarea>
 
-    <label for="sakit">Sakit</label>
-    <input type="text" id="sakit" placeholder="Contoh: Ricky">
+            <label for="lainnya">Kerjaan lainnya</small></label>
+            <textarea id="lainnya" placeholder="Contoh: (Troubleshoot) Taupik, Sahid. (Survey) Ridho, Gito"></textarea>
 
-    <label for="alfa">Alfa</label>
-    <input type="text" id="alfa" placeholder="Contoh: -">
+            <label for="izin">Izin</label>
+            <input type="text" id="izin" placeholder="Contoh: Deni">
 
-    <button onclick="generate()">Preview Laporan</button>
+            <label for="sakit">Sakit</label>
+            <input type="text" id="sakit" placeholder="Contoh: Ricky">
 
-    <div class="preview" id="preview"></div>
+            <label for="alfa">Alfa</label>
+            <input type="text" id="alfa" placeholder="Contoh: -">
 
-    <div class="actions" id="actions" style="display:none;">
-      <button onclick="copyText()">📑 Salin</button>
-      <button onclick="saveToSheet()">💾 Simpan</button>
-      <button onclick="clearPreview()">🗑️ Hapus</button>
-      <button id="waBtn" onclick="sendWhatsApp()">📲 Kirim ke WhatsApp</button>
+            <div class="row">
+                <button onclick="generate()">Preview Laporan</button>
+                <button onclick="saveToSheet()">💾 Simpan ke Sheet</button>
+            </div>
+
+            <div class="preview" id="preview"></div>
+
+            <div class="actions" id="actions" style="display:none;">
+                <button onclick="copyText()">📑 Salin</button>
+                <button onclick="sendWhatsApp()">📲 Kirim ke WhatsApp</button>
+                <button onclick="clearPreview()">🗑️ Hapus</button>
+            </div>
+
+            <div class="card info" id="notScheduledCard" style="display:none;">
+                <h3>⚠️ Belum Dapat Jadwal</h3>
+                <ul id="notScheduledList" class="anggota-list"></ul>
+            </div>
+
+            <small style="opacity:.7; display:block; margin-top:8px">Tips: Tambah anggota sekali, lalu mereka akan tersedia untuk pengecekan otomatis.</small>
+        </div>
     </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-  </html>
-  
+              </html>
+              
