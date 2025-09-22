@@ -329,4 +329,3 @@ window.onload = function(){
     document.getElementById("tanggal").value = `${yyyy}-${mm}-${dd}`;
     showPage('start');
 };
-  
